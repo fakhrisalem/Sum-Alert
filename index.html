@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MOO project</title>
+  <link rel="stylesheet" href="styles.css">
+  </head>
+<body>
+  <h1>Sum Alert</h1>
+  <h1>Array Iteration and Spread Operator</h1>
+  <h1>Student information</h1>
+  <h1>Tips for you</h1>
+  <button id="displayButton">Display All Tips</button>
+  <button id="intervalButton">Display Tip Every 3 Seconds</button>
+  <div id="tipContainer"></div>
+  <div class="tip-box" id="tipContainer"></div>
+  <script>
+    (() => {
+      const num1 = 100;
+      const num2 = 200;
+      const sum = num1 + num2;
+      
+      alert(`The sum of ${num1} and ${num2} is ${sum}`);
+    })();
+    const array = [1, 2, 6,8, 5];
+
+
+console.log("Using for...in:");
+for (const index in array) {
+  console.log(index); 
+}
+
+console.log("\nUsing for...of:");
+for (const element of array) {
+  console.log(element); 
+}
+
+console.log("\nUsing .forEach():");
+array.forEach((element, index) => {
+  console.log(element); 
+});
+const tips = [
+      "Embrace Change: Life is full of changes, and embracing them can lead to personal growth and new opportunities.",
+      "Practice Gratitude: Cultivating a sense of gratitude for the things you have can bring more positivity and happiness into your life.",
+      "Take Care of Your Health: Prioritize your physical and mental well-being by adopting healthy habits, exercising regularly, eating nutritious food, and taking time for self-care.",
+      "Pursue Your Passions: Identify your passions and make time to pursue them. Engaging in activities you love brings fulfillment and a sense of purpose.",
+      "Learn from Failures: View failures as learning experiences and opportunities for growth. Embrace them as stepping stones toward success.",
+      "Build Meaningful Relationships: Surround yourself with positive and supportive people who uplift and inspire you. Nurture your relationships and invest time in building connections.",
+      "Practice Mindfulness: Be present in the moment, cultivate self-awareness, and focus on the here and now. Mindfulness can enhance overall well-being and reduce stress.",
+      "Set Goals: Define your goals and create a plan to achieve them. Setting goals provides direction and motivation, helping you make progress in various aspects of life.",
+      "Embrace Self-Reflection: Take time to reflect on your thoughts, emotions, and actions. Self-reflection fosters personal growth, self-improvement, and a deeper understanding of yourself.",
+      "Live Authentically: Be true to yourself and embrace your uniqueness. Live according to your values, beliefs, and passions, rather than trying to fit into societal expectations."
+    ];
+
+    const tipContainer = document.getElementById("tipContainer");
+    let tipIndex = 0;
+    let intervalId;
+
+    function displayAllTips() {
+      tipContainer.innerHTML = ""; 
+
+      tips.forEach((tip, index) => {
+        const tipBox = document.createElement("div");
+        tipBox.classList.add("tip-box");
+        tipBox.textContent = tip;
+        tipContainer.appendChild(tipBox);
+      });
+    }
+
+    function displayTipEveryThreeSeconds() {
+      clearInterval(intervalId); 
+      tipContainer.innerHTML = ""; 
+
+      intervalId = setInterval(() => {
+        const tipBox = document.createElement("div");
+        tipBox.classList.add("tip-box");
+        tipBox.textContent = tips[tipIndex];
+        tipContainer.appendChild(tipBox);
+
+        tipIndex = (tipIndex + 1) % tips.length; 
+
+      }, 3000);
+    }
+
+    document.getElementById("displayButton").addEventListener("click", displayAllTips);
+    document.getElementById("intervalButton").addEventListener("click", displayTipEveryThreeSeconds);
+    class Student {
+      constructor(Std_name,Uni_name,fac_name , finalGrade) {
+        this.name = Std_name;
+        this.university = Uni_name;
+        this.faculty = fac_name;
+        this.finalGrade = finalGrade;
+      }
+
+      printStudentData() {
+        console.log(`${this.name} is a student in the faculty of ${this.faculty} at ${this.university}`);
+      }
+    }
+    const student = new Student("mona", "GUC University", "Computer Science", 90);
+
+    student.printStudentData();
+  </script>
+</body>
+</html>
